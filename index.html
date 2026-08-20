@@ -828,7 +828,7 @@
         let repeatMode = 0; // 0: off, 1: all
         
         // Atur default menjadi 2.0 (Volume Booster 200%) agar langsung ekstra keras sejak awal dimuat
-        let volume = 2.0; 
+        let volume = 1.5; 
         
         let searchQuery = ''; // Menyimpan kata kunci pencarian
 
@@ -1236,7 +1236,7 @@
                 if (volume > 0) {
                     volume = 0; // Mute
                 } else {
-                    volume = 2.0; // Saat di-unmute, kembalikan ke extra keras (200%)
+                    volume = 1.7; // Saat di-unmute, kembalikan ke extra keras (200%)
                 }
                 
                 audioPlayer.volume = Math.min(1, volume);
