@@ -813,7 +813,7 @@
         let isPlaying = false;
         let isShuffle = false;
         let repeatMode = 0; // 0: off, 1: all
-        let volume = 0.7;
+        let volume = 1.0;
         let searchQuery = ''; // Menyimpan kata kunci pencarian
 
         // EQ State
@@ -877,7 +877,7 @@
             
             // Set initial volume UI and actual audio element volume
             audioPlayer.volume = volume;
-            volumeFill.style.width = (volume * 500) + '%';
+            volumeFill.style.width = (volume * 100) + '%';
             
             // Handle Offline
             window.addEventListener('online', () => offlineBadge.classList.remove('show'));
@@ -1158,7 +1158,7 @@
                 volume = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
                 audioPlayer.volume = volume;
                 if(gainNode) gainNode.gain.value = volume;
-                volumeFill.style.width = (volume * 500) + '%';
+                volumeFill.style.width = (volume * 100) + '%';
             });
 
             volumeBtn.addEventListener('click', () => {
@@ -1169,7 +1169,7 @@
                 }
                 audioPlayer.volume = volume;
                 if(gainNode) gainNode.gain.value = volume;
-                volumeFill.style.width = (volume * 500) + '%';
+                volumeFill.style.width = (volume * 100) + '%';
             });
 
             // Presets
