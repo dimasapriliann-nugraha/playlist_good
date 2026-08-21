@@ -41,614 +41,204 @@
             flex-direction: column;
         }
 
-        h1, h2, h3, h4, h5 {
-            font-family: 'Space Grotesk', sans-serif;
-        }
+        h1, h2, h3, h4, h5 { font-family: 'Space Grotesk', sans-serif; }
 
         /* Background Mesh Animation */
-        .bg-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .mesh-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
-            animation: float 25s ease-in-out infinite;
-        }
-
-        .mesh-blob:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: var(--accent);
-            top: -100px;
-            right: -50px;
-        }
-
-        .mesh-blob:nth-child(2) {
-            width: 250px;
-            height: 250px;
-            background: #0d7a3a;
-            bottom: 20%;
-            left: -80px;
-            animation-delay: -10s;
-        }
+        .bg-mesh { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+        .mesh-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; animation: float 25s ease-in-out infinite; }
+        .mesh-blob:nth-child(1) { width: 300px; height: 300px; background: var(--accent); top: -100px; right: -50px; }
+        .mesh-blob:nth-child(2) { width: 250px; height: 250px; background: #0d7a3a; bottom: 20%; left: -80px; animation-delay: -10s; }
 
         @keyframes float {
             0%, 100% { transform: translate(0, 0) scale(1); }
             50% { transform: translate(20px, -20px) scale(1.1); }
         }
 
-        /* Main Layout - Mobile First */
-        .app-container {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            background: rgba(10, 10, 15, 0.8);
-            backdrop-filter: blur(20px);
-        }
+        /* Main Layout */
+        .app-container { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; width: 100%; max-width: 500px; margin: 0 auto; background: rgba(10, 10, 15, 0.8); backdrop-filter: blur(20px); overflow: hidden; }
 
-        /* Header */
-        .app-header {
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-        }
+        /* Header (Layout Asli Tetap) */
+        .app-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+        .logo { display: flex; align-items: center; gap: 10px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; }
+        .logo-icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .status-dot { display: inline-block; width: 8px; height: 8px; background-color: #1db954; border-radius: 50%; margin-right: 4px; box-shadow: 0 0 8px #1db954; }
+        .kelompok-text { font-size: 0.7rem; color: var(--text-muted); font-weight: 400; display: flex; flex-direction: column; line-height: 1.1; }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--accent);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .icon-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .icon-btn:hover {
-            background: var(--bg-hover);
-            transform: scale(1.05);
-        }
+        .header-actions { display: flex; gap: 8px; }
+        .icon-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-card); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-primary); cursor: pointer; transition: all 0.2s; }
+        .icon-btn:hover { background: var(--bg-hover); transform: scale(1.05); }
 
         /* Search Container */
-        .search-container {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background: var(--bg-primary);
-            padding: 0 20px;
-        }
-        
-        .search-container.show {
-            max-height: 70px;
-            padding: 12px 20px;
-            border-bottom: 1px solid var(--border);
-        }
+        .search-container { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: var(--bg-primary); padding: 0 20px; }
+        .search-container.show { max-height: 70px; padding: 12px 20px; border-bottom: 1px solid var(--border); }
+        .search-input { width: 100%; padding: 10px 16px; border-radius: 20px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); font-size: 0.9rem; outline: none; }
+        .search-input:focus { border-color: var(--accent); }
 
-        .search-input {
-            width: 100%;
-            padding: 10px 16px;
-            border-radius: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
+        /* Main Content Area */
+        .main-scroll-area { flex: 1; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
+        .content-section { padding: 20px; }
+        .section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; }
 
-        .search-input:focus {
-            border-color: var(--accent);
-        }
+        /* Track List */
+        .track-list { display: flex; flex-direction: column; gap: 12px; }
+        .track-item { display: flex; align-items: center; gap: 12px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 12px; cursor: pointer; transition: all 0.2s; }
+        .track-item:active { transform: scale(0.98); background: var(--bg-hover); }
+        .track-item.playing { border-color: var(--accent); background: var(--accent-dim); }
+        .track-cover { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: var(--bg-hover); }
+        .track-info { flex: 1; min-width: 0; }
+        .track-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .track-item.playing .track-title { color: var(--accent); }
+        .track-artist { font-size: 0.8rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .track-duration { font-size: 0.8rem; color: var(--text-muted); }
+        .empty-state { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.9rem; }
 
-        /* Main Content Area (Scrollable) */
-        .main-scroll-area {
-            flex: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Content Sections */
-        .content-section {
-            padding: 20px;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        /* Track List - Card Style for Mobile */
-        .track-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .track-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .track-item:active {
-            transform: scale(0.98);
-            background: var(--bg-hover);
-        }
-
-        .track-item.playing {
-            border-color: var(--accent);
-            background: var(--accent-dim);
-        }
-
-        .track-cover {
-            width: 56px;
-            height: 56px;
-            border-radius: 8px;
-            object-fit: cover;
-            background: var(--bg-hover);
-        }
-
-        .track-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .track-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .track-item.playing .track-title {
-            color: var(--accent);
-        }
-
-        .track-artist {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .track-duration {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Now Playing Mini Visualizer */
-        .now-playing-indicator {
-            display: none;
-            align-items: flex-end;
-            gap: 2px;
-            height: 16px;
-            margin-right: 8px;
-        }
-
-        .track-item.playing .now-playing-indicator {
-            display: flex;
-        }
-
-        .bar {
-            width: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-            animation: soundwave 0.5s ease-in-out infinite alternate;
-        }
-
+        /* Indicator Mini */
+        .now-playing-indicator { display: none; align-items: flex-end; gap: 2px; height: 16px; margin-right: 8px; }
+        .track-item.playing .now-playing-indicator { display: flex; }
+        .bar { width: 3px; background: var(--accent); border-radius: 2px; animation: soundwave 0.5s ease-in-out infinite alternate; }
         .bar:nth-child(1) { height: 6px; animation-delay: 0s; }
         .bar:nth-child(2) { height: 12px; animation-delay: 0.2s; }
         .bar:nth-child(3) { height: 8px; animation-delay: 0.4s; }
+        @keyframes soundwave { from { height: 4px; } to { height: 14px; } }
 
-        @keyframes soundwave {
-            from { height: 4px; }
-            to { height: 14px; }
-        }
+        /* Feature Panels */
+        .feature-panels { padding: 0 20px 20px; display: grid; gap: 16px; }
+        .panel-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .panel-title { font-size: 1rem; font-weight: 600; }
+        .visualizer-wrapper { height: 100px; background: var(--bg-primary); border-radius: 8px; overflow: hidden; }
 
-        /* Panel: Equalizer & Visualizer (Visible by default in scroll) */
-        .feature-panels {
-            padding: 0 20px 20px;
-            display: grid;
-            gap: 16px;
-        }
+        /* EQ */
+        .eq-container { display: flex; justify-content: space-between; align-items: center; height: 120px; padding: 10px 0; }
+        .eq-slider-group { display: flex; flex-direction: column; align-items: center; height: 100%; width: 30px; }
+        .eq-value { font-size: 0.65rem; color: var(--text-muted); height: 20px; display: flex; align-items: center; }
+        .slider-track { flex: 1; width: 4px; background: var(--bg-primary); border-radius: 2px; position: relative; margin: 4px 0; cursor: pointer; }
+        .slider-fill { position: absolute; bottom: 0; width: 100%; background: var(--accent); border-radius: 2px; pointer-events: none; }
+        .slider-thumb { position: absolute; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; background: white; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .eq-label { font-size: 0.6rem; color: var(--text-muted); margin-top: 4px; }
+        .preset-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+        .preset-chip { padding: 6px 12px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 20px; font-size: 0.75rem; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+        .preset-chip.active { background: var(--accent); border-color: var(--accent); color: var(--bg-primary); font-weight: 600; }
 
-        .panel-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 16px;
-        }
-
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .panel-title {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* Visualizer Canvas */
-        .visualizer-wrapper {
-            height: 100px;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        /* Equalizer Sliders */
-        .eq-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 120px;
-            padding: 10px 0;
-        }
-
-        .eq-slider-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100%;
-            width: 30px;
-        }
-
-        .eq-value {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            height: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .slider-track {
-            flex: 1;
-            width: 4px;
-            background: var(--bg-primary);
-            border-radius: 2px;
-            position: relative;
-            margin: 4px 0;
-            cursor: pointer;
-        }
-
-        .slider-fill {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: var(--accent);
-            border-radius: 2px;
-            pointer-events: none;
-        }
-
-        .slider-thumb {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 14px;
-            height: 14px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .eq-label {
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* Presets */
-        .preset-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .preset-chip {
-            padding: 6px 12px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .preset-chip.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
+        /* Footer (Layout Asli Tetap) */
+        .app-footer { text-align: center; padding: 20px 20px 40px 20px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 10px; line-height: 1.6;}
+        .app-footer span { font-weight: 600; color: var(--text-secondary); }
 
         /* Bottom Player Bar */
-        .player-bar {
-            background: linear-gradient(to top, var(--bg-secondary) 80%, transparent);
-            padding: 12px 20px 24px;
-            position: relative;
-            z-index: 10;
-            border-top: 1px solid var(--border);
+        .player-bar { background: linear-gradient(to top, var(--bg-secondary) 80%, transparent); padding: 12px 20px 24px; position: relative; z-index: 10; border-top: 1px solid var(--border); }
+        .player-content { display: flex; flex-direction: column; gap: 8px; }
+        .progress-row { display: flex; align-items: center; gap: 10px; }
+        .time { font-size: 0.7rem; color: var(--text-muted); min-width: 30px; }
+        .progress-track { flex: 1; height: 4px; background: var(--bg-hover); border-radius: 2px; position: relative; cursor: pointer; }
+        .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; width: 0%; position: relative; }
+        .progress-handle { position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: white; border-radius: 50%; box-shadow: 0 0 8px rgba(29, 185, 84, 0.5); }
+        .controls-row { display: flex; align-items: center; justify-content: space-between; }
+        .track-mini-info { display: flex; align-items: center; gap: 10px; width: 40%; min-width: 0; cursor: pointer; }
+        .track-mini-cover { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; background: var(--bg-hover); }
+        .track-mini-text h4 { font-size: 0.85rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .track-mini-text p { font-size: 0.7rem; color: var(--text-secondary); }
+        .main-controls { display: flex; align-items: center; gap: 16px; }
+        .ctrl-btn { background: none; border: none; color: var(--text-secondary); cursor: pointer; padding: 4px; transition: all 0.2s; }
+        .ctrl-btn.active { color: var(--accent); }
+        .play-btn { width: 48px; height: 48px; background: var(--text-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--bg-primary); cursor: pointer; border: none; }
+        .play-btn:active { transform: scale(0.95); }
+        .volume-control { display: flex; align-items: center; gap: 8px; width: 30%; justify-content: flex-end; }
+        .vol-slider { width: 60px; height: 4px; background: var(--bg-hover); border-radius: 2px; position: relative; display: none; }
+        .vol-fill { height: 100%; background: var(--text-secondary); border-radius: 2px; width: 70%; }
+
+        /* Toast & Offline Badge */
+        .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--bg-card); border: 1px solid var(--border); padding: 12px 20px; border-radius: 30px; font-size: 0.85rem; z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.3); white-space: nowrap;}
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+        .offline-badge { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); background: #e74c3c; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; display: none; z-index: 200; border: 1px solid #c0392b; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        .offline-badge.show { display: block; animation: pulseOffline 2s infinite; }
+        @keyframes pulseOffline { 0% { opacity: 0.8; } 50% { opacity: 1; transform: translateX(-50%) scale(1.05); } 100% { opacity: 0.8; } }
+
+        /* =========================================
+           FULL SCREEN PLAYER (NO LYRICS)
+           ========================================= */
+        .fullscreen-player {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 1000; display: flex; flex-direction: column;
+            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden; 
+        }
+        .fullscreen-player.active { transform: translateY(0); }
+
+        /* Video Background Fixed & Animated */
+        .fs-bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: brightness(0.5); pointer-events: none; }
+        .fs-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.9) 100%); z-index: 2; pointer-events: none; }
+
+        .fs-main-screen { position: relative; z-index: 3; display: flex; flex-direction: column; height: 100%; padding: 40px 20px 20px 20px; }
+        .fs-header { display: flex; justify-content: space-between; align-items: center; }
+        .fs-icon-btn { background: none; border: none; color: white; padding: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .fs-header-text { text-align: center; display: flex; flex-direction: column; }
+        .fs-header-subtitle { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: #ddd; }
+        .fs-header-title { font-size: 0.85rem; font-weight: 700; color: white; }
+        .fs-spacer { flex: 1; } 
+
+        /* Track Info Box - Target for Animation */
+        .fs-track-info { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; opacity: 1; }
+        .fs-track-info img { width: 56px; height: 56px; border-radius: 6px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+        .fs-text-col { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+        .fs-text-col h2 { font-size: 1.4rem; font-weight: 700; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .fs-text-col p { font-size: 1rem; color: #ccc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* Progress & Controls */
+        .fs-progress-container { margin-bottom: 24px; }
+        .fs-progress-track { height: 4px; background: rgba(255, 255, 255, 0.3); border-radius: 2px; position: relative; cursor: pointer; }
+        .fs-progress-fill { height: 100%; background: white; border-radius: 2px; width: 0%; position: relative; }
+        .fs-progress-handle { position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: white; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .fs-time-row { display: flex; justify-content: space-between; font-size: 0.75rem; color: #ddd; margin-top: 8px; }
+
+        .fs-main-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .fs-ctrl-btn { background: none; border: none; color: white; padding: 8px; cursor: pointer; transition: transform 0.2s; position: relative;}
+        .fs-ctrl-btn:active { transform: scale(0.9); }
+        .fs-ctrl-btn.active { color: var(--accent); }
+        .fs-play-btn { width: 68px; height: 68px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: black; border: none; cursor: pointer; transition: transform 0.2s; }
+        .fs-play-btn:active { transform: scale(0.95); }
+
+        .timer-badge { position: absolute; top: -5px; right: -5px; background: var(--accent); color: black; font-size: 0.55rem; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s;}
+        .timer-badge.active { opacity: 1; }
+
+        .fs-bottom-actions { display: flex; align-items: center; justify-content: space-between; color: #ccc; padding-bottom: 15px; }
+
+        /* =========================================
+           ANIMASI & JENDELA MODAL ADMIN
+           ========================================= */
+        @keyframes slideInRight {
+            0% { transform: translateX(60px); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeInVideo {
+            0% { opacity: 0.1; }
+            100% { opacity: 1; }
         }
 
-        .player-content {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+        .admin-modal-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            z-index: 2000; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
         }
+        .admin-modal-overlay.active { opacity: 1; visibility: visible; }
+        .admin-modal {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 20px; padding: 24px; width: 85%; max-width: 320px;
+            text-align: center; transform: scale(0.8) translateY(20px);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+        }
+        .admin-modal-overlay.active .admin-modal { transform: scale(1) translateY(0); }
+        .admin-modal h3 { font-size: 1.2rem; color: white; margin-bottom: 8px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;}
+        .admin-modal p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.5; }
+        .admin-modal-actions { display: flex; gap: 12px; }
+        .btn-cancel { flex: 1; padding: 12px; background: var(--bg-hover); border: 1px solid var(--border); border-radius: 12px; color: white; cursor: pointer; font-weight: 600; transition: background 0.2s;}
+        .btn-cancel:active { background: var(--bg-secondary); }
+        .btn-wa { flex: 1; padding: 12px; background: #25D366; border: none; border-radius: 12px; color: white; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); transition: transform 0.2s;}
+        .btn-wa:active { transform: scale(0.95); }
 
-        .progress-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .time {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            min-width: 30px;
-        }
-
-        .progress-track {
-            flex: 1;
-            height: 4px;
-            background: var(--bg-hover);
-            border-radius: 2px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .progress-track:active {
-            height: 6px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 2px;
-            width: 0%;
-            position: relative;
-        }
-
-        .progress-handle {
-            position: absolute;
-            right: -6px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 12px;
-            height: 12px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 8px rgba(29, 185, 84, 0.5);
-        }
-
-        .controls-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .track-mini-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 40%;
-            min-width: 0;
-        }
-
-        .track-mini-cover {
-            width: 44px;
-            height: 44px;
-            border-radius: 6px;
-            object-fit: cover;
-            background: var(--bg-hover);
-        }
-
-        .track-mini-text h4 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .track-mini-text p {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-        }
-
-        .main-controls {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .ctrl-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 4px;
-            transition: all 0.2s;
-        }
-
-        .ctrl-btn.active {
-            color: var(--accent);
-        }
-
-        .play-btn {
-            width: 48px;
-            height: 48px;
-            background: var(--text-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-primary);
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-        }
-
-        .play-btn:active {
-            transform: scale(0.95);
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            width: 30%;
-            justify-content: flex-end;
-        }
-
-        .vol-slider {
-            width: 60px;
-            height: 4px;
-            background: var(--bg-hover);
-            border-radius: 2px;
-            position: relative;
-            display: none; /* Hidden on very small screens, shown via media query */
-        }
-
-        .vol-fill {
-            height: 100%;
-            background: var(--text-secondary);
-            border-radius: 2px;
-            width: 70%;
-        }
-
-        /* Toast */
-        .toast {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            z-index: 100;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Offline Indicator */
-        .offline-badge {
-            position: fixed;
-            top: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #e74c3c;
-            color: #fff;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            display: none;
-            z-index: 200;
-            border: 1px solid #c0392b;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .offline-badge.show {
-            display: block;
-            animation: pulseOffline 2s infinite;
-        }
-        
-        @keyframes pulseOffline {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
-            100% { opacity: 0.8; }
-        }
-
-        @media (min-width: 400px) {
-            .vol-slider {
-                display: block;
-            }
-        }
-
-        /* Hide scrollbars but keep functionality */
-        .main-scroll-area::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
+        @media (min-width: 400px) { .vol-slider { display: block; } }
+        .main-scroll-area::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
 <body>
@@ -658,7 +248,6 @@
         <div class="mesh-blob"></div>
     </div>
 
-    <!-- Menampilkan peringatan jelas jika internet putus -->
     <div class="offline-badge" id="offlineBadge">Kamu Sedang Offline</div>
 
     <div class="app-container">
@@ -670,59 +259,41 @@
                         <polygon points="5 3 19 12 5 21 5 3" fill="white"></polygon>
                     </svg>
                 </div>
-                <span>Melody</span>
+                <div>
+                    <span>Melody</span>
+                    <div class="kelompok-text"><span class="status-dot"></span>Online | Playlist</div>
+                </div>
             </div>
             <div class="header-actions">
                 <button class="icon-btn" id="searchBtn" aria-label="Cari">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
                 </button>
                 <button class="icon-btn" id="downloadBtn" aria-label="Unduh Lagu">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 </button>
             </div>
         </header>
         
-        <!-- Search Bar (Tersembunyi secara default) -->
         <div class="search-container" id="searchContainer">
             <input type="text" class="search-input" id="searchInput" placeholder="Cari judul lagu atau artis...">
         </div>
 
-        <!-- Main Scrollable Content -->
         <main class="main-scroll-area">
-            <!-- Song List Section -->
             <section class="content-section">
                 <h2 class="section-title">Daftar Putar</h2>
-                <div class="track-list" id="trackList">
-                    <!-- Tracks rendered here -->
-                </div>
+                <div class="track-list" id="trackList"></div>
             </section>
 
-            <!-- Feature Panels (Always Visible) -->
             <div class="feature-panels">
-                <!-- Visualizer Panel -->
                 <div class="panel-card">
-                    <div class="panel-header">
-                        <h3 class="panel-title">Visualizer</h3>
-                    </div>
-                    <div class="visualizer-wrapper">
-                        <canvas id="visualizerCanvas" width="350" height="100" style="width:100%; height:100%;"></canvas>
-                    </div>
+                    <div class="panel-header"><h3 class="panel-title">Visualizer</h3></div>
+                    <div class="visualizer-wrapper"><canvas id="visualizerCanvas" width="350" height="100" style="width:100%; height:100%;"></canvas></div>
                 </div>
-
-                <!-- Equalizer Panel -->
                 <div class="panel-card">
                     <div class="panel-header">
                         <h3 class="panel-title">Equalizer</h3>
                         <button class="preset-chip" id="resetEqBtn" style="background: transparent; border: 1px solid var(--border); padding: 4px 8px;">Reset</button>
                     </div>
-                    
                     <div class="preset-container" id="presetContainer">
                         <button class="preset-chip active" data-preset="flat">Flat</button>
                         <button class="preset-chip" data-preset="bass">Bass</button>
@@ -730,133 +301,154 @@
                         <button class="preset-chip" data-preset="rock">Rock</button>
                         <button class="preset-chip" data-preset="electronic">EDM</button>
                     </div>
-
-                    <div class="eq-container" id="eqContainer">
-                        <!-- EQ Sliders rendered here -->
-                    </div>
+                    <div class="eq-container" id="eqContainer"></div>
                 </div>
             </div>
+
+            <footer class="app-footer">
+                <p>&copy; 2026 DimasApriliann. All Rights Reserved.</p>
+                <p><span>Dimas</span> - Web Player Project</p>
+            </footer>
         </main>
 
-        <!-- Bottom Player Bar -->
+        <!-- Mini Player -->
         <div class="player-bar">
             <div class="player-content">
                 <div class="progress-row">
                     <span class="time" id="currentTime">0:00</span>
-                    <div class="progress-track" id="progressTrack">
-                        <div class="progress-fill" id="progressFill">
-                            <div class="progress-handle"></div>
-                        </div>
-                    </div>
+                    <div class="progress-track" id="progressTrack"><div class="progress-fill" id="progressFill"><div class="progress-handle"></div></div></div>
                     <span class="time" id="totalTime">0:00</span>
                 </div>
-
                 <div class="controls-row">
-                    <div class="track-mini-info">
+                    <div class="track-mini-info" id="miniPlayerInfo">
                         <img class="track-mini-cover" id="playerCover" src="https://picsum.photos/seed/default/100" alt="Cover">
-                        <div class="track-mini-text">
-                            <h4 id="playerTitle">Pilih Lagu</h4>
-                            <p id="playerArtist">-</p>
-                        </div>
+                        <div class="track-mini-text"><h4 id="playerTitle">Pilih Lagu</h4><p id="playerArtist">-</p></div>
                     </div>
-
                     <div class="main-controls">
-                        <button class="ctrl-btn" id="shuffleBtn" aria-label="Acak">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="16 3 21 3 21 8"></polyline>
-                                <line x1="4" y1="20" x2="21" y2="3"></line>
-                                <polyline points="21 16 21 21 16 21"></polyline>
-                                <line x1="15" y1="15" x2="21" y2="21"></line>
-                                <line x1="4" y1="4" x2="9" y2="9"></line>
-                            </svg>
-                        </button>
-                        <button class="play-btn" id="playPauseBtn" aria-label="Putar">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" id="playIcon">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </button>
-                        <button class="ctrl-btn" id="repeatBtn" aria-label="Ulangi">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="17 1 21 5 17 9"></polyline>
-                                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-                                <polyline points="7 23 3 19 7 15"></polyline>
-                                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-                            </svg>
-                        </button>
+                        <button class="ctrl-btn" id="shuffleBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg></button>
+                        <button class="play-btn" id="playPauseBtn"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" id="playIcon"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+                        <button class="ctrl-btn" id="repeatBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg></button>
                     </div>
-
                     <div class="volume-control">
-                        <button class="ctrl-btn" id="volumeBtn" aria-label="Volume">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="volumeIcon">
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                            </svg>
-                        </button>
-                        <div class="vol-slider" id="volumeSlider">
-                            <div class="vol-fill" id="volumeFill"></div>
-                        </div>
+                        <button class="ctrl-btn" id="volumeBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="volumeIcon"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg></button>
+                        <div class="vol-slider" id="volumeSlider"><div class="vol-fill" id="volumeFill"></div></div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- ============================================== -->
+        <!-- FULL SCREEN PLAYER (NO LYRICS)                 -->
+        <!-- ============================================== -->
+        <div id="fullScreenPlayer" class="fullscreen-player">
+            
+            <video class="fs-bg-video" id="fsBgVideo" autoplay loop muted playsinline></video>
+            <div class="fs-overlay"></div>
+
+            <div class="fs-main-screen">
+                <div class="fs-header">
+                    <button class="fs-icon-btn" id="fsMinimizeBtn" title="Kembali">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="fs-header-text">
+                        <span class="fs-header-subtitle">Memainkan dari Playlist</span>
+                        <span class="fs-header-title">Daftar Putar Melody</span>
+                    </div>
+                    <button class="fs-icon-btn" id="fsMenuBtn" title="Kontak Admin">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+                    </button>
+                </div>
+
+                <div class="fs-spacer"></div>
+
+                <!-- Pembungkus Elemen untuk Animasi Slide -->
+                <div class="fs-track-info" id="fsTrackInfoBox">
+                    <img src="" id="fsCoverLg" alt="Cover">
+                    <div class="fs-text-col">
+                        <h2 id="fsTitleLg">Title</h2>
+                        <p id="fsArtistLg">Artist</p>
+                    </div>
+                </div>
+
+                <div class="fs-progress-container">
+                    <div class="fs-progress-track" id="fsProgressTrackLg"><div class="fs-progress-fill" id="fsProgressFillLg"><div class="fs-progress-handle"></div></div></div>
+                    <div class="fs-time-row"><span id="fsCurrentTimeLg">0:00</span><span id="fsTotalTimeLg">0:00</span></div>
+                </div>
+
+                <div class="fs-main-controls">
+                    <button class="fs-ctrl-btn" id="fsShuffleBtnLg"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg></button>
+                    <button class="fs-ctrl-btn" id="fsPrevBtnLg"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"></line></svg></button>
+                    <button class="fs-play-btn" id="fsPlayPauseBtnLg"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" id="fsPlayIconLg"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+                    <button class="fs-ctrl-btn" id="fsNextBtnLg"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19" stroke="currentColor" stroke-width="2"></line></svg></button>
+                    <button class="fs-ctrl-btn" id="fsTimerBtnLg" title="Waktu Tidur">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span class="timer-badge" id="fsTimerBadge"></span>
+                    </button>
+                </div>
+
+                <div class="fs-bottom-actions">
+                    <button class="fs-icon-btn" id="fsDeviceBtn" title="Perangkat Terhubung"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg></button>
+                    <div style="display:flex; gap:16px;">
+                        <button class="fs-icon-btn" id="fsShareBtn" title="Bagikan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></button>
+                        <button class="fs-icon-btn" id="fsQueueBtn" title="Daftar Antrean"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JENDELA ANIMASI KONTAK ADMIN -->
+            <div class="admin-modal-overlay" id="adminModal">
+                <div class="admin-modal">
+                    <!-- Icon WA -->
+                    <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" style="margin: 0 auto 16px auto;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    <h3>Hubungi Admin</h3>
+                    <p>Apakah kamu ingin beralih ke WhatsApp untuk menghubungi Admin?</p>
+                    <div class="admin-modal-actions">
+                        <button class="btn-cancel" id="btnCancelWa">Batal</button>
+                        <button class="btn-wa" id="btnGoWa">Chat WA Admin</button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
     <div class="toast" id="toast"></div>
 
-    <!-- PENTING: Atribut crossorigin="anonymous" wajib ada agar suara web audio api bisa terbaca -->
     <audio id="audioPlayer" preload="auto" crossorigin="anonymous"></audio>
 
     <script>
-        // ============ DATA ============
+        // ============ DATA 7 LAGU & VIDEO MASING-MASING ============
         const musicData = [
-            { id: 1, title: "Bahagia Lagi", artist: "Piche Kota", duration: "3:47", cover: "https://picsum.photos/seed/m1/300/300", src: "bahagia.mp3" },
-            { id: 2, title: "Astrid", artist: "Vibe Music", duration: "4:14", cover: "https://picsum.photos/seed/m2/300/300", src: "Astrid.mp3" },
-            { id: 3, title: "Bersenja Gurau", artist: "Raimlode", duration: "3:27", cover: "https://picsum.photos/seed/m3/300/300", src: "bersenja gurau.mp3" },
-            { id: 4, title: "Lesung pipi", artist: "Raimlode", duration: "3:45", cover: "https://picsum.photos/seed/m4/300/300", src: "lesung pipi.mp3" },
-            { id: 5, title: "Sesi Potret", artist: "Enau feat Aril Lesmana", duration: "5:06", cover: "https://picsum.photos/seed/m5/300/300", src: "sesi potret.mp3" },
-            { id: 6, title: "Teh Hijau", artist: "Tulus", duration: "3:34", cover: "https://picsum.photos/seed/m6/300/300", src: "Teh Hijau.mp3" },
-            { id: 7, title: "1000x", artist: "Ghea Indrawari", duration: "4:10", cover: "https://picsum.photos/seed/m7/300/300", src: "lagu.mp3" }
+            { id: 1, title: "Bahagia Lagi", artist: "Piche Kota", duration: "3:47", cover: "https://picsum.photos/seed/m1/300/300", src: "bahagia.mp3", video: "video1.mp4" },
+            { id: 2, title: "Terpukau", artist: "Vibe Music", duration: "4:13", cover: "https://picsum.photos/seed/m2/300/300", src: "Astrid.mp3", video: "video2.mp4" },
+            { id: 3, title: "Bersenja Gurau", artist: "Raimlaode", duration: "3:27", cover: "https://picsum.photos/seed/m3/300/300", src: "bersenja gurau.mp3", video: "video3.mp4" },
+            { id: 4, title: "Lesung pipi", artist: "Raimlaode", duration: "3:44", cover: "https://picsum.photos/seed/m4/300/300", src: "lesung pipi.mp3", video: "video4.mp4" },
+            { id: 5, title: "Sesi Potret", artist: "Eńau feat. Ari Lesmana", duration: "3:56", cover: "https://picsum.photos/seed/m5/300/300", src: "sesi potret.mp3", video: "video5.mp4" },
+            { id: 6, title: "Teh Hijau", artist: "Tulus", duration: "3:33", cover: "https://picsum.photos/seed/m6/300/300", src: "Teh Hijau.mp3", video: "video6.mp4" },
+            { id: 7, title: "1000x", artist: "Ghea Indrawari", duration: "4:10", cover: "https://picsum.photos/seed/m7/300/300", src: "lagu.mp3", video: "video7.mp4" }
         ];
 
-        // Gambar default jika cover asli gagal di-load karena tidak ada internet (Base64 SVG)
         const fallbackCover = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' style='background:%23252535' viewBox='0 0 24 24' fill='none' stroke='%23606070' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18V5l12-2v13'%3E%3C/path%3E%3Ccircle cx='6' cy='18' r='3'%3E%3C/circle%3E%3Ccircle cx='18' cy='16' r='3'%3E%3C/circle%3E%3C/svg%3E";
 
-        // ============ STATE ============
         let currentTrack = null;
         let isPlaying = false;
         let isShuffle = false;
-        let repeatMode = 0; // 0: off, 1: all
-        
-        // Atur default menjadi 2.0 (Volume Booster 200%) agar langsung ekstra keras sejak awal dimuat
-        let volume = 1.5; 
-        
-        let searchQuery = ''; // Menyimpan kata kunci pencarian
+        let repeatMode = 0; 
+        let volume = 2.0; 
+        let searchQuery = ''; 
+        let sleepTimer = null;
+        let timerMinutes = 0; 
 
-        // EQ State
-        const eqBands = [
-            { freq: 60, gain: 0 }, { freq: 170, gain: 0 }, { freq: 310, gain: 0 },
-            { freq: 600, gain: 0 }, { freq: 1000, gain: 0 }, { freq: 3000, gain: 0 },
-            { freq: 6000, gain: 0 }, { freq: 12000, gain: 0 }
-        ];
+        // EQ
+        const eqBands = [{freq:60,gain:0}, {freq:170,gain:0}, {freq:310,gain:0}, {freq:600,gain:0}, {freq:1000,gain:0}, {freq:3000,gain:0}, {freq:6000,gain:0}, {freq:12000,gain:0}];
+        const eqPresets = { flat:[0,0,0,0,0,0,0,0], bass:[6,5,3,0,0,0,1,2], vocal:[-2,-1,0,2,4,3,2,0], rock:[4,3,1,-1,-1,2,4,4], electronic:[4,3,0,-2,-1,2,5,5] };
 
-        const eqPresets = {
-            flat: [0, 0, 0, 0, 0, 0, 0, 0],
-            bass: [6, 5, 3, 0, 0, 0, 1, 2],
-            vocal: [-2, -1, 0, 2, 4, 3, 2, 0],
-            rock: [4, 3, 1, -1, -1, 2, 4, 4],
-            electronic: [4, 3, 0, -2, -1, 2, 5, 5]
-        };
+        let audioContext = null, sourceNode = null, analyserNode = null, eqNodes = [], gainNode = null;
 
-        // Audio Context vars
-        let audioContext = null;
-        let sourceNode = null;
-        let analyserNode = null;
-        let eqNodes = [];
-        let gainNode = null;
-
-        // ============ DOM ELEMENTS ============
         const audioPlayer = document.getElementById('audioPlayer');
         const trackListEl = document.getElementById('trackList');
+        
+        // DOM Controls
         const playerCover = document.getElementById('playerCover');
         const playerTitle = document.getElementById('playerTitle');
         const playerArtist = document.getElementById('playerArtist');
@@ -868,6 +460,40 @@
         const progressFill = document.getElementById('progressFill');
         const currentTimeEl = document.getElementById('currentTime');
         const totalTimeEl = document.getElementById('totalTime');
+        const miniPlayerInfo = document.getElementById('miniPlayerInfo');
+        
+        // Full Screen DOM
+        const fullScreenPlayer = document.getElementById('fullScreenPlayer');
+        const fsMinimizeBtn = document.getElementById('fsMinimizeBtn');
+        const fsMenuBtn = document.getElementById('fsMenuBtn');
+        const fsCoverLg = document.getElementById('fsCoverLg');
+        const fsTitleLg = document.getElementById('fsTitleLg');
+        const fsArtistLg = document.getElementById('fsArtistLg');
+        const fsPlayPauseBtnLg = document.getElementById('fsPlayPauseBtnLg');
+        const fsPlayIconLg = document.getElementById('fsPlayIconLg');
+        const fsNextBtnLg = document.getElementById('fsNextBtnLg');
+        const fsPrevBtnLg = document.getElementById('fsPrevBtnLg');
+        const fsShuffleBtnLg = document.getElementById('fsShuffleBtnLg');
+        const fsProgressTrackLg = document.getElementById('fsProgressTrackLg');
+        const fsProgressFillLg = document.getElementById('fsProgressFillLg');
+        const fsCurrentTimeLg = document.getElementById('fsCurrentTimeLg');
+        const fsTotalTimeLg = document.getElementById('fsTotalTimeLg');
+        const fsBgVideo = document.getElementById('fsBgVideo');
+        const fsTrackInfoBox = document.getElementById('fsTrackInfoBox'); // Untuk Animasi Geser
+        
+        // Sidebar/Toolbar Bawah
+        const fsTimerBtnLg = document.getElementById('fsTimerBtnLg');
+        const fsTimerBadge = document.getElementById('fsTimerBadge');
+        const fsDeviceBtn = document.getElementById('fsDeviceBtn');
+        const fsShareBtn = document.getElementById('fsShareBtn');
+        const fsQueueBtn = document.getElementById('fsQueueBtn');
+
+        // Admin Modal DOM
+        const adminModal = document.getElementById('adminModal');
+        const btnCancelWa = document.getElementById('btnCancelWa');
+        const btnGoWa = document.getElementById('btnGoWa');
+
+        // Main Tools
         const volumeSlider = document.getElementById('volumeSlider');
         const volumeFill = document.getElementById('volumeFill');
         const volumeBtn = document.getElementById('volumeBtn');
@@ -879,70 +505,45 @@
         const presetContainer = document.getElementById('presetContainer');
         const visualizerCanvas = document.getElementById('visualizerCanvas');
         const canvasCtx = visualizerCanvas.getContext('2d');
-        
-        // Search Elements
         const searchBtn = document.getElementById('searchBtn');
         const searchContainer = document.getElementById('searchContainer');
         const searchInput = document.getElementById('searchInput');
 
-        // ============ INITIALIZATION ============
         function init() {
             renderTracks();
             renderEQ();
             setupEventListeners();
             
-            // Atur batas elemen audio mentok di 1.0 (agar browser tidak error)
             audioPlayer.volume = Math.min(1, volume);
-            
-            // UI Slider dibagi 2 agar nilai 2.0 penuh 100% di kotak
             volumeFill.style.width = ((volume / 2) * 100) + '%';
             
-            // Handle Deteksi Status Offline/Online Browser
-            window.addEventListener('online', () => {
-                offlineBadge.classList.remove('show');
-                showToast("Koneksi Internet Terhubung");
-            });
-            window.addEventListener('offline', () => {
-                offlineBadge.classList.add('show');
-                showToast("Koneksi Terputus (Mode Offline)");
-            });
+            window.addEventListener('online', () => { offlineBadge.classList.remove('show'); showToast("Internet Terhubung"); });
+            window.addEventListener('offline', () => { offlineBadge.classList.add('show'); showToast("Mode Offline"); });
             if (!navigator.onLine) offlineBadge.classList.add('show');
         }
 
-        // ============ RENDER FUNCTIONS ============
         function renderTracks() {
-            // Filter berdasarkan input pencarian
             const filteredData = musicData.filter(track => 
-                track.title.toLowerCase().includes(searchQuery) || 
-                track.artist.toLowerCase().includes(searchQuery)
+                track.title.toLowerCase().includes(searchQuery) || track.artist.toLowerCase().includes(searchQuery)
             );
-
             if (filteredData.length === 0) {
-                trackListEl.innerHTML = `<div class="empty-state">Lagu tidak ditemukan</div>`;
-                return;
+                trackListEl.innerHTML = `<div class="empty-state">Lagu tidak ditemukan</div>`; return;
             }
-
             trackListEl.innerHTML = filteredData.map(track => `
-                <div class="track-item ${currentTrack && currentTrack.id === track.id ? 'playing' : ''}" data-id="${track.id}">
-                    <!-- Ditambahkan error handling fallback image jika gambar online gagal dimuat offline -->
-                    <img class="track-cover" src="${track.cover}" alt="${track.title}" onerror="this.onerror=null; this.src='${fallbackCover}';">
-                    <div class="track-info">
-                        <div class="track-title">${track.title}</div>
-                        <div class="track-artist">${track.artist}</div>
-                    </div>
-                    <div class="now-playing-indicator">
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-                    </div>
+                <div class="track-item ${currentTrack && currentTrack.id === track.id ? 'playing' : ''}" data-id="${track.id}" id="track-${track.id}">
+                    <img class="track-cover" src="${track.cover}" onerror="this.onerror=null; this.src='${fallbackCover}';">
+                    <div class="track-info"><div class="track-title">${track.title}</div><div class="track-artist">${track.artist}</div></div>
+                    <div class="now-playing-indicator"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
                     <div class="track-duration">${track.duration}</div>
                 </div>
             `).join('');
 
-            // Add Listeners
             trackListEl.querySelectorAll('.track-item').forEach(item => {
                 item.addEventListener('click', () => {
                     const id = parseInt(item.dataset.id);
                     const track = musicData.find(t => t.id === id);
                     playTrack(track);
+                    openFullScreenPlayer(); 
                 });
             });
         }
@@ -951,33 +552,17 @@
             eqContainer.innerHTML = eqBands.map((band, i) => `
                 <div class="eq-slider-group">
                     <div class="eq-value">${band.gain > 0 ? '+' : ''}${band.gain}</div>
-                    <div class="slider-track" data-index="${i}">
-                        <div class="slider-fill" style="height: ${50 + (band.gain/12)*50}%"></div>
-                        <div class="slider-thumb" style="bottom: ${50 + (band.gain/12)*50}%"></div>
-                    </div>
+                    <div class="slider-track" data-index="${i}"><div class="slider-fill" style="height: ${50 + (band.gain/12)*50}%"></div><div class="slider-thumb" style="bottom: ${50 + (band.gain/12)*50}%"></div></div>
                     <div class="eq-label">${band.freq > 999 ? (band.freq/1000) + 'k' : band.freq}</div>
                 </div>
             `).join('');
-
-            // Add Drag Logic
             eqContainer.querySelectorAll('.slider-track').forEach(slider => {
                 const updateSlider = (e) => {
-                    const rect = slider.getBoundingClientRect();
-                    const y = e.touches ? e.touches[0].clientY : e.clientY;
-                    const relY = Math.max(0, Math.min(1, 1 - (y - rect.top) / rect.height));
-                    const gain = Math.round((relY * 2 - 1) * 12);
-                    const index = parseInt(slider.dataset.index);
-                    
-                    eqBands[index].gain = gain;
-                    if (eqNodes[index]) eqNodes[index].gain.value = gain;
-                    
-                    // Update UI
-                    const pct = 50 + (gain/12)*50;
-                    slider.querySelector('.slider-fill').style.height = pct + '%';
-                    slider.querySelector('.slider-thumb').style.bottom = pct + '%';
-                    slider.parentElement.querySelector('.eq-value').innerText = (gain > 0 ? '+' : '') + gain;
+                    const rect = slider.getBoundingClientRect(); const y = e.touches ? e.touches[0].clientY : e.clientY;
+                    const relY = Math.max(0, Math.min(1, 1 - (y - rect.top) / rect.height)); const gain = Math.round((relY * 2 - 1) * 12);
+                    const index = parseInt(slider.dataset.index); eqBands[index].gain = gain; if (eqNodes[index]) eqNodes[index].gain.value = gain;
+                    const pct = 50 + (gain/12)*50; slider.querySelector('.slider-fill').style.height = pct + '%'; slider.querySelector('.slider-thumb').style.bottom = pct + '%'; slider.parentElement.querySelector('.eq-value').innerText = (gain > 0 ? '+' : '') + gain;
                 };
-
                 slider.addEventListener('mousedown', (e) => { updateSlider(e); document.addEventListener('mousemove', updateSlider); });
                 document.addEventListener('mouseup', () => document.removeEventListener('mousemove', updateSlider));
                 slider.addEventListener('touchstart', (e) => updateSlider(e), { passive: true });
@@ -985,319 +570,240 @@
             });
         }
 
-        // ============ AUDIO ENGINE ============
         function initAudioContext() {
             if (audioContext) return;
             audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            
-            // Analyser
-            analyserNode = audioContext.createAnalyser();
-            analyserNode.fftSize = 128; // Smaller for mobile performance
-            
-            // EQ Nodes
-            eqNodes = eqBands.map((band, i) => {
-                const filter = audioContext.createBiquadFilter();
-                filter.type = i === 0 ? 'lowshelf' : i === eqBands.length - 1 ? 'highshelf' : 'peaking';
-                filter.frequency.value = band.freq;
-                filter.gain.value = band.gain;
-                filter.Q.value = 1;
-                return filter;
-            });
-            
-            // Gain Node
-            gainNode = audioContext.createGain();
-            gainNode.gain.value = volume;
-            
-            // Connect
+            analyserNode = audioContext.createAnalyser(); analyserNode.fftSize = 128; 
+            eqNodes = eqBands.map((band, i) => { const filter = audioContext.createBiquadFilter(); filter.type = i === 0 ? 'lowshelf' : i === eqBands.length - 1 ? 'highshelf' : 'peaking'; filter.frequency.value = band.freq; filter.gain.value = band.gain; filter.Q.value = 1; return filter; });
+            gainNode = audioContext.createGain(); gainNode.gain.value = volume;
             sourceNode = audioContext.createMediaElementSource(audioPlayer);
-            let lastNode = sourceNode;
-            eqNodes.forEach(node => { lastNode.connect(node); lastNode = node; });
-            lastNode.connect(analyserNode);
-            analyserNode.connect(gainNode);
-            gainNode.connect(audioContext.destination);
+            let lastNode = sourceNode; eqNodes.forEach(node => { lastNode.connect(node); lastNode = node; });
+            lastNode.connect(analyserNode); analyserNode.connect(gainNode); gainNode.connect(audioContext.destination);
         }
 
         function playTrack(track) {
-            // === LOGIKA OFFLINE FILTER ===
-            // Jika sedang tidak ada internet (offline) dan lagu menggunakan URL web luar (http/https), tolak pemutaran
             if (!navigator.onLine && track.src.startsWith('http')) {
-                showToast(`Mode Offline: Melewati lagu ${track.title} (Membutuhkan Internet)`);
-                // Otomatis skip ke lagu selanjutnya yang mungkin merupakan lagu lokal (mp3)
+                showToast(`Offline: Melewati ${track.title}`);
                 let currentIndex = musicData.findIndex(t => t.id === track.id);
                 let nextIndex = (currentIndex + 1) % musicData.length;
-                setTimeout(() => playTrack(musicData[nextIndex]), 1500); // jeda sedikit agar halus
-                return; // Batalkan proses play di bawah
+                setTimeout(() => playTrack(musicData[nextIndex]), 1500); return; 
             }
 
-            currentTrack = track;
-            audioPlayer.src = track.src;
-            
-            // Panggil load() untuk memastikan browser meload lagu dengan baik
+            currentTrack = track; 
+            audioPlayer.src = track.src; 
             audioPlayer.load();
             
-            playerCover.src = track.cover;
-            
-            // Fallback image untuk cover yang ada di player mini bar bawah
-            playerCover.onerror = function() {
-                this.src = fallbackCover;
-            };
+            // Sync UI Images
+            playerCover.src = track.cover; playerCover.onerror = function() { this.src = fallbackCover; };
+            playerTitle.textContent = track.title; playerArtist.textContent = track.artist;
+            fsCoverLg.src = track.cover; fsCoverLg.onerror = function() { this.src = fallbackCover; };
+            fsTitleLg.textContent = track.title; fsArtistLg.textContent = track.artist;
 
-            playerTitle.textContent = track.title;
-            playerArtist.textContent = track.artist;
+            // Load Video Background Sync
+            fsBgVideo.src = track.video;
+            fsBgVideo.load();
+            fsBgVideo.play().catch(e => console.log("Video bg auto-play dadakan error:", e));
+
+            // ==== JALANKAN ANIMASI GESER & FADE IN ====
+            // 1. Animasi teks/info (Slide In dari Kanan)
+            fsTrackInfoBox.style.animation = 'none';
+            void fsTrackInfoBox.offsetWidth; // Memicu reflow/restart
+            fsTrackInfoBox.style.animation = 'slideInRight 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards';
+
+            // 2. Animasi fade-in halus untuk Video Background
+            fsBgVideo.style.animation = 'none';
+            void fsBgVideo.offsetWidth;
+            fsBgVideo.style.animation = 'fadeInVideo 0.6s ease-in-out forwards';
 
             if (!audioContext) initAudioContext();
             if (audioContext.state === 'suspended') audioContext.resume();
 
-            audioPlayer.play().then(() => {
-                isPlaying = true;
-                updatePlayButton();
-                renderTracks(); // Render ulang agar status playing (warna hijau) terupdate
-            }).catch(e => {
-                console.error("Gagal memutar audio: ", e);
-                // Jika error saat memutar offline, berikan respon jelas
-                if (!navigator.onLine) {
-                    showToast("Gagal memutar. Memeriksa file lokal berikutnya...");
-                } else {
-                    showToast("Error memutar lagu. Pastikan file ada dan server menyala.");
-                }
-            });
+            audioPlayer.play().then(() => { isPlaying = true; updatePlayButton(); renderTracks(); })
+            .catch(e => { console.error(e); showToast("Error memutar lagu."); });
         }
 
         function togglePlay() {
             if (!currentTrack) { playTrack(musicData[0]); return; }
-            
             if (!audioContext) initAudioContext();
             if (audioContext.state === 'suspended') audioContext.resume();
 
-            if (isPlaying) {
-                audioPlayer.pause();
-                isPlaying = false;
-            } else {
-                audioPlayer.play().catch(e => console.error(e));
-                isPlaying = true;
-            }
-            updatePlayButton();
-            renderTracks();
+            if (isPlaying) { audioPlayer.pause(); isPlaying = false; fsBgVideo.pause(); } 
+            else { audioPlayer.play(); isPlaying = true; fsBgVideo.play(); }
+            updatePlayButton(); renderTracks();
         }
 
         function updatePlayButton() {
-            if (isPlaying) {
-                playIcon.innerHTML = `<rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect>`;
-            } else {
-                playIcon.innerHTML = `<polygon points="5 3 19 12 5 21 5 3"></polygon>`;
-            }
+            const pauseIcon = `<rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect>`;
+            const playIconSvg = `<polygon points="5 3 19 12 5 21 5 3"></polygon>`;
+            playIcon.innerHTML = isPlaying ? pauseIcon : playIconSvg;
+            fsPlayIconLg.innerHTML = isPlaying ? pauseIcon : playIconSvg;
+        }
+        
+        function playNextTrack() {
+            if(!currentTrack) return;
+            let currentIndex = musicData.findIndex(t => t.id === currentTrack.id);
+            // Ini menjamin LOGIKA AUTO NEXT terus berputar meski sudah mencapai lagu terakhir
+            let nextIndex = isShuffle ? Math.floor(Math.random() * musicData.length) : (currentIndex + 1) % musicData.length;
+            playTrack(musicData[nextIndex]);
+        }
+        
+        function playPrevTrack() {
+            if(!currentTrack) return;
+            let currentIndex = musicData.findIndex(t => t.id === currentTrack.id);
+            let prevIndex = (currentIndex - 1 + musicData.length) % musicData.length;
+            playTrack(musicData[prevIndex]);
         }
 
-        // ============ VISUALIZER ============
+        function openFullScreenPlayer() { if (!currentTrack) return; fullScreenPlayer.classList.add('active'); }
+        function closeFullScreenPlayer() { fullScreenPlayer.classList.remove('active'); }
+
         function drawVisualizer() {
-            requestAnimationFrame(drawVisualizer);
-            if (!analyserNode) return;
-
-            const bufferLength = analyserNode.frequencyBinCount;
-            const dataArray = new Uint8Array(bufferLength);
-            analyserNode.getByteFrequencyData(dataArray);
-
-            const width = visualizerCanvas.width;
-            const height = visualizerCanvas.height;
-
-            canvasCtx.fillStyle = '#0a0a0f';
-            canvasCtx.fillRect(0, 0, width, height);
-
-            const barWidth = (width / bufferLength) * 2.5;
-            let x = 0;
-
+            requestAnimationFrame(drawVisualizer); if (!analyserNode) return;
+            const bufferLength = analyserNode.frequencyBinCount; const dataArray = new Uint8Array(bufferLength); analyserNode.getByteFrequencyData(dataArray);
+            const width = visualizerCanvas.width; const height = visualizerCanvas.height; canvasCtx.fillStyle = '#0a0a0f'; canvasCtx.fillRect(0, 0, width, height);
+            const barWidth = (width / bufferLength) * 2.5; let x = 0;
             for (let i = 0; i < bufferLength; i++) {
-                const barHeight = (dataArray[i] / 255) * height;
-                
-                // Gradient color
-                const gradient = canvasCtx.createLinearGradient(0, height, 0, height - barHeight);
-                gradient.addColorStop(0, '#1db954');
-                gradient.addColorStop(1, '#0d5a2a');
-                
-                canvasCtx.fillStyle = gradient;
-                canvasCtx.fillRect(x, height - barHeight, barWidth - 1, barHeight);
-                x += barWidth;
+                const barHeight = (dataArray[i] / 255) * height; const gradient = canvasCtx.createLinearGradient(0, height, 0, height - barHeight);
+                gradient.addColorStop(0, '#1db954'); gradient.addColorStop(1, '#0d5a2a'); canvasCtx.fillStyle = gradient; canvasCtx.fillRect(x, height - barHeight, barWidth - 1, barHeight); x += barWidth;
             }
         }
 
-        // ============ EVENT LISTENERS ============
         function setupEventListeners() {
-            
-            // EVENT LISTENER ERROR AUDIO (Terjadi jika putus koneksi di tengah lagu)
-            audioPlayer.addEventListener('error', (e) => {
-                if (!navigator.onLine) {
-                    isPlaying = false;
-                    updatePlayButton();
-                    showToast("Koneksi internet hilang. Memutar lagu lokal...");
-                    
-                    // Lompat paksa ke file lokal terdekat jika putus di tengah jalan
-                    let currentIndex = musicData.findIndex(t => t.id === currentTrack.id);
-                    let nextIndex = (currentIndex + 1) % musicData.length;
-                    setTimeout(() => playTrack(musicData[nextIndex]), 2000);
-                }
-            });
+            miniPlayerInfo.addEventListener('click', openFullScreenPlayer);
+            fsMinimizeBtn.addEventListener('click', closeFullScreenPlayer);
 
-            // EVENT LISTENER PENCARIAN (SEARCH)
-            searchBtn.addEventListener('click', () => {
-                searchContainer.classList.toggle('show');
-                if (searchContainer.classList.contains('show')) {
-                    setTimeout(() => searchInput.focus(), 300); // Fokus otomatis setelah animasi
-                } else {
-                    // Reset pencarian ketika ditutup
-                    searchInput.value = '';
-                    searchQuery = '';
-                    renderTracks();
-                }
+            // ================== LOGIKA KONTAK ADMIN (JENDELA ANIMASI) ==================
+            fsMenuBtn.addEventListener('click', () => {
+                adminModal.classList.add('active');
             });
-
-            searchInput.addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase();
-                renderTracks();
+            btnCancelWa.addEventListener('click', () => {
+                adminModal.classList.remove('active');
+            });
+            btnGoWa.addEventListener('click', () => {
+                adminModal.classList.remove('active');
+                // Masukkan Nomor WA Admin Kelompok 3 di sini (format 628...)
+                window.open('https://wa.me/6285794249679?text=Halo%20Admin%', '_blank');
             });
             
+            // =========================================================================
+
             playPauseBtn.addEventListener('click', togglePlay);
+            fsPlayPauseBtnLg.addEventListener('click', togglePlay);
+            fsNextBtnLg.addEventListener('click', playNextTrack);
+            fsPrevBtnLg.addEventListener('click', playPrevTrack);
             
-            // Next/Prev logic simple implementation
-            shuffleBtn.addEventListener('click', () => {
-                isShuffle = !isShuffle;
-                shuffleBtn.classList.toggle('active', isShuffle);
-                showToast(isShuffle ? "Acak Aktif" : "Acak Mati");
+            // Timer (Waktu Tidur)
+            fsTimerBtnLg.addEventListener('click', () => {
+                if (timerMinutes === 0) timerMinutes = 15;
+                else if (timerMinutes === 15) timerMinutes = 30;
+                else if (timerMinutes === 30) timerMinutes = 60;
+                else { 
+                    timerMinutes = 0; 
+                    clearTimeout(sleepTimer); 
+                    fsTimerBtnLg.classList.remove('active');
+                    fsTimerBadge.classList.remove('active');
+                    showToast("Pengatur waktu tidur dinonaktifkan."); 
+                    return; 
+                }
+                
+                clearTimeout(sleepTimer);
+                fsTimerBtnLg.classList.add('active');
+                fsTimerBadge.textContent = timerMinutes;
+                fsTimerBadge.classList.add('active');
+                showToast(`Lagu akan berhenti dalam ${timerMinutes} menit.`);
+                
+                sleepTimer = setTimeout(() => {
+                    if (isPlaying) togglePlay();
+                    showToast("Waktu tidur habis. Musik dihentikan.");
+                    timerMinutes = 0;
+                    fsTimerBtnLg.classList.remove('active');
+                    fsTimerBadge.classList.remove('active');
+                }, timerMinutes * 60000);
             });
 
-            repeatBtn.addEventListener('click', () => {
-                repeatMode = (repeatMode + 1) % 2;
-                repeatBtn.classList.toggle('active', repeatMode === 1);
-                showToast(repeatMode === 1 ? "Ulang Semua" : "Ulang Mati");
+            // Berbagi
+            fsShareBtn.addEventListener('click', () => {
+                if (!currentTrack) return;
+                if (navigator.share) {
+                    navigator.share({
+                        title: currentTrack.title,
+                        text: `Dengarkan lagu ${currentTrack.title} oleh ${currentTrack.artist} di Melody Player!`,
+                        url: window.location.href
+                    }).catch(err => console.log("Share batal/gagal", err));
+                } else {
+                    showToast("Tautan lagu disalin ke clipboard!");
+                }
             });
+
+            // Antrean (Ke List)
+            fsQueueBtn.addEventListener('click', () => {
+                closeFullScreenPlayer();
+                setTimeout(() => {
+                    const activeElement = document.getElementById(`track-${currentTrack.id}`);
+                    if (activeElement) {
+                        activeElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        activeElement.style.transform = "scale(1.03)";
+                        activeElement.style.boxShadow = "0 0 15px rgba(29, 185, 84, 0.4)";
+                        setTimeout(() => {
+                            activeElement.style.transform = "scale(1)";
+                            activeElement.style.boxShadow = "none";
+                        }, 600);
+                    }
+                }, 400); 
+            });
+
+            fsDeviceBtn.addEventListener('click', () => { showToast("Memutar lagu di Perangkat Ini"); });
+
+            audioPlayer.addEventListener('error', () => {
+                if (!navigator.onLine) { isPlaying = false; updatePlayButton(); showToast("Internet hilang. Memutar lokal..."); let currentIndex = musicData.findIndex(t => t.id === currentTrack.id); setTimeout(() => playTrack(musicData[(currentIndex + 1) % musicData.length]), 2000); }
+            });
+
+            searchBtn.addEventListener('click', () => { searchContainer.classList.toggle('show'); if (searchContainer.classList.contains('show')) { setTimeout(() => searchInput.focus(), 300); } else { searchInput.value = ''; searchQuery = ''; renderTracks(); } });
+            searchInput.addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase(); renderTracks(); });
+            
+            const toggleShuffle = () => { isShuffle = !isShuffle; shuffleBtn.classList.toggle('active', isShuffle); fsShuffleBtnLg.classList.toggle('active', isShuffle); showToast(isShuffle ? "Acak Aktif" : "Acak Mati"); };
+            shuffleBtn.addEventListener('click', toggleShuffle); fsShuffleBtnLg.addEventListener('click', toggleShuffle);
+
+            repeatBtn.addEventListener('click', () => { repeatMode = (repeatMode + 1) % 2; repeatBtn.classList.toggle('active', repeatMode === 1); showToast(repeatMode === 1 ? "Ulang Semua" : "Ulang Mati"); });
 
             audioPlayer.addEventListener('timeupdate', () => {
                 if (audioPlayer.duration) {
                     const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-                    progressFill.style.width = pct + '%';
-                    currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+                    progressFill.style.width = pct + '%'; currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+                    fsProgressFillLg.style.width = pct + '%'; fsCurrentTimeLg.textContent = formatTime(audioPlayer.currentTime);
                 }
             });
 
-            audioPlayer.addEventListener('loadedmetadata', () => {
-                totalTimeEl.textContent = formatTime(audioPlayer.duration);
+            audioPlayer.addEventListener('loadedmetadata', () => { totalTimeEl.textContent = formatTime(audioPlayer.duration); fsTotalTimeLg.textContent = formatTime(audioPlayer.duration); });
+            
+            // ============ LOGIKA AUTO NEXT (DIJAMIN LANCAR) ============
+            // Ketika lagu habis diputar secara alami
+            audioPlayer.addEventListener('ended', () => { 
+                if (repeatMode === 1) { 
+                    playTrack(currentTrack); // Ulangi lagu saat ini (video ikut refresh & animasi)
+                } else { 
+                    playNextTrack(); // Otomatis maju ke lagu selanjutnya dan Ganti Video dengan animasi
+                } 
             });
 
-            // EVENT LISTENER KETIKA LAGU SELESAI (AUTO-NEXT)
-            audioPlayer.addEventListener('ended', () => {
-                if (repeatMode === 1) {
-                    // Jika fitur ulang semua / ulang lagu aktif, loop ke lagu di bawahnya (seperti bawaan sebelumnya)
-                    let nextIndex = (musicData.findIndex(t => t.id === currentTrack.id) + 1) % musicData.length;
-                    playTrack(musicData[nextIndex]);
-                } else if (isShuffle) {
-                    // Mode acak
-                    playTrack(musicData[Math.floor(Math.random() * musicData.length)]);
-                } else {
-                    // LOGIKA BARU: AUTO NEXT KE LAGU DI BAWAHNYA
-                    let currentIndex = musicData.findIndex(t => t.id === currentTrack.id);
-                    let nextIndex = currentIndex + 1;
-                    
-                    // Cek jika lagu selanjutnya masih ada dalam daftar
-                    if (nextIndex < musicData.length) {
-                        playTrack(musicData[nextIndex]);
-                    } else {
-                        // Jika sudah di lagu paling terakhir dan fitur repeat tidak aktif, musik berhenti (Stop)
-                        isPlaying = false;
-                        updatePlayButton();
-                    }
-                }
-            });
+            progressTrack.addEventListener('click', (e) => { const rect = progressTrack.getBoundingClientRect(); audioPlayer.currentTime = ((e.clientX - rect.left) / rect.width) * audioPlayer.duration; });
+            fsProgressTrackLg.addEventListener('click', (e) => { const rect = fsProgressTrackLg.getBoundingClientRect(); audioPlayer.currentTime = ((e.clientX - rect.left) / rect.width) * audioPlayer.duration; });
 
-            progressTrack.addEventListener('click', (e) => {
-                const rect = progressTrack.getBoundingClientRect();
-                const pct = (e.clientX - rect.left) / rect.width;
-                audioPlayer.currentTime = pct * audioPlayer.duration;
-            });
+            volumeSlider.addEventListener('click', (e) => { const rect = volumeSlider.getBoundingClientRect(); volume = Math.max(0, Math.min(2, ((e.clientX - rect.left) / rect.width) * 2)); audioPlayer.volume = Math.min(1, volume); if(gainNode) gainNode.gain.value = volume; volumeFill.style.width = ((volume / 2) * 100) + '%'; });
+            volumeBtn.addEventListener('click', () => { volume = volume > 0 ? 0 : 2.0; audioPlayer.volume = Math.min(1, volume); if(gainNode) gainNode.gain.value = volume; volumeFill.style.width = ((volume / 2) * 100) + '%'; });
 
-            // LOGIKA EXTRA KERAS (VOLUME BOOSTER HINGGA 200%)
-            // Volume Slider
-            volumeSlider.addEventListener('click', (e) => {
-                const rect = volumeSlider.getBoundingClientRect();
-                
-                // Ubah perhitungan menjadi batas maksimal 2.0 (200%)
-                volume = Math.max(0, Math.min(2, ((e.clientX - rect.left) / rect.width) * 2));
-                
-                // Pemutar audio HTML mentok di 1.0 (agar browser tidak error)
-                audioPlayer.volume = Math.min(1, volume);
-                
-                // gainNode (Web Audio API) yang mendorong suara menjadi extra keras (hingga 2.0)
-                if(gainNode) gainNode.gain.value = volume;
-                
-                // UI Slider disesuaikan (dibagi 2 agar 2.0 = 100% lebar kotak slider)
-                volumeFill.style.width = ((volume / 2) * 100) + '%';
-            });
+            presetContainer.addEventListener('click', (e) => { if (e.target.classList.contains('preset-chip')) { applyPreset(e.target.dataset.preset); presetContainer.querySelectorAll('.preset-chip').forEach(btn => btn.classList.remove('active')); e.target.classList.add('active'); } });
+            resetEqBtn.addEventListener('click', () => { applyPreset('flat'); presetContainer.querySelectorAll('.preset-chip').forEach(btn => btn.classList.remove('active')); presetContainer.querySelector('[data-preset="flat"]').classList.add('active'); });
 
-            // Volume Mute/Unmute Button
-            volumeBtn.addEventListener('click', () => {
-                if (volume > 0) {
-                    volume = 0; // Mute
-                } else {
-                    volume = 1.7; // Saat di-unmute, kembalikan ke extra keras (200%)
-                }
-                
-                audioPlayer.volume = Math.min(1, volume);
-                if(gainNode) gainNode.gain.value = volume;
-                volumeFill.style.width = ((volume / 2) * 100) + '%';
-            });
+            downloadBtn.addEventListener('click', () => { if(currentTrack) { showToast(`Mulai unduh: ${currentTrack.title}...`); const a = document.createElement('a'); a.href = currentTrack.src; a.download = `${currentTrack.artist} - ${currentTrack.title}.mp3`; a.target = '_blank'; a.style.display = 'none'; document.body.appendChild(a); a.click(); document.body.removeChild(a); } else showToast("Pilih lagu dahulu"); });
 
-            // Presets
-            presetContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('preset-chip')) {
-                    const preset = e.target.dataset.preset;
-                    applyPreset(preset);
-                    
-                    // Update active UI
-                    presetContainer.querySelectorAll('.preset-chip').forEach(btn => btn.classList.remove('active'));
-                    e.target.classList.add('active');
-                }
-            });
-
-            resetEqBtn.addEventListener('click', () => {
-                applyPreset('flat');
-                presetContainer.querySelectorAll('.preset-chip').forEach(btn => btn.classList.remove('active'));
-                presetContainer.querySelector('[data-preset="flat"]').classList.add('active');
-            });
-
-            downloadBtn.addEventListener('click', () => {
-                if(currentTrack) {
-                    showToast(`Mengunduh ${currentTrack.title}...`);
-                } else {
-                    showToast("Pilih lagu dulu");
-                }
-            });
-
-            // Start visualizer loop
             drawVisualizer();
         }
 
-        function applyPreset(name) {
-            const values = eqPresets[name];
-            if (!values) return;
-            
-            eqBands.forEach((band, i) => {
-                band.gain = values[i];
-                if (eqNodes[i]) eqNodes[i].gain.value = values[i];
-            });
-            renderEQ();
-        }
+        function applyPreset(name) { const values = eqPresets[name]; if (!values) return; eqBands.forEach((band, i) => { band.gain = values[i]; if (eqNodes[i]) eqNodes[i].gain.value = values[i]; }); renderEQ(); }
+        function formatTime(seconds) { if (isNaN(seconds)) return "0:00"; const m = Math.floor(seconds / 60); const s = Math.floor(seconds % 60); return `${m}:${s < 10 ? '0' : ''}${s}`; }
+        function showToast(msg) { toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); }
 
-        function formatTime(seconds) {
-            const m = Math.floor(seconds / 60);
-            const s = Math.floor(seconds % 60);
-            return `${m}:${s < 10 ? '0' : ''}${s}`;
-        }
-
-        function showToast(msg) {
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
-        }
-
-        // Run
         init();
     </script>
 </body>
